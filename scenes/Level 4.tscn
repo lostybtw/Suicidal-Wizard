@@ -1,0 +1,68 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://prefabs/player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://prefabs/death platform.tscn" type="PackedScene" id=2]
+[ext_resource path="res://tilesets/32x32.tres" type="TileSet" id=3]
+[ext_resource path="res://tilesets/46x48.tres" type="TileSet" id=4]
+[ext_resource path="res://prefabs/flag.tscn" type="PackedScene" id=5]
+[ext_resource path="res://tilesets/tileset.tres" type="TileSet" id=6]
+[ext_resource path="res://tilesets/46x16.tres" type="TileSet" id=7]
+[ext_resource path="res://scripts/node.gd" type="Script" id=8]
+[ext_resource path="res://scripts/flag4.gd" type="Script" id=9]
+[ext_resource path="res://prefabs/background.tscn" type="PackedScene" id=10]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource( 8 )
+
+[node name="Node2D" parent="." instance=ExtResource( 10 )]
+position = Vector2( -512, -128 )
+
+[node name="player" parent="." instance=ExtResource( 1 )]
+
+[node name="death platform" parent="." instance=ExtResource( 2 )]
+position = Vector2( 0, 248 )
+scale = Vector2( 3, 1 )
+collision_layer = 6
+collision_mask = 6
+
+[node name="32x32" type="TileMap" parent="."]
+tile_set = ExtResource( 3 )
+collision_layer = 6
+collision_mask = 6
+format = 1
+
+[node name="46x48" type="TileMap" parent="."]
+tile_set = ExtResource( 4 )
+cell_size = Vector2( 46, 48 )
+collision_layer = 6
+collision_mask = 6
+format = 1
+tile_data = PoolIntArray( 6, 536870912, 0, 196652, 536870933, 0, 327687, 536870912, 0, 327720, 536870933, 0, 458781, 536870933, 0, 458782, 536870933, 0, 458783, 536870933, 0, 458784, 536870933, 0, 458799, 536870934, 0, 458805, 536870934, 0, 458811, 536870934, 0, 524316, 536870933, 0, 589850, 536870934, 0, 589860, 536870933, 0, 655370, 536870912, 0, 655384, 536870934, 0, 720918, 536870934, 0, 786452, 536870912, 0 )
+
+[node name="46x16" type="TileMap" parent="."]
+tile_set = ExtResource( 7 )
+cell_size = Vector2( 46, 16 )
+collision_layer = 6
+collision_mask = 6
+format = 1
+tile_data = PoolIntArray( 196607, 536870913, 0, 131072, 536870913, 0, 131073, 536870913, 0, 131074, 536870913, 0, 131075, 536870913, 0, 131076, 536870913, 0, 262143, 1073741825, 0, 196608, 1073741825, 0, 196609, 1073741825, 0, 196610, 1073741825, 0, 196611, 1073741825, 0, 196612, 1073741825, 0, 458800, 536870916, 0, 786474, 536870913, 0, 1441859, 536870915, 0, 1572930, 536870915, 0, 1704001, 536870915, 0, 1769514, 536870916, 0, 1769515, 536870917, 0, 1769516, 536870918, 0, 1835051, 536870915, 0, 1835054, 536870915, 0, 1835056, 536870915, 0, 1835058, 536870915, 0, 1835060, 536870915, 0, 1835062, 536870915, 0, 1835064, 536870915, 0, 1835066, 536870915, 0, 1835068, 536870915, 0, 1835070, 536870915, 0, 1835072, 536870915, 0 )
+
+[node name="invis" type="TileMap" parent="."]
+tile_set = ExtResource( 6 )
+collision_layer = 0
+collision_mask = 0
+format = 1
+tile_data = PoolIntArray( 131078, 536870913, 0, 196641, 536870914, 0, 262175, 536870913, 0, 262178, 536870914, 0, 327710, 536870913, 0, 327716, 536870913, 0, 327720, 536870913, 0, 327721, 536870913, 0, 393222, 536870913, 0, 393240, 536870913, 0, 393243, 536870913, 0, 393244, 536870913, 0, 393245, 536870913, 0, 524298, 536870913, 0, 524299, 536870913, 0, 589833, 536870913, 0, 589836, 536870913, 0 )
+
+[node name="flag" parent="." instance=ExtResource( 5 )]
+position = Vector2( 2752, 336 )
+script = ExtResource( 9 )
+
+[node name="Label" type="Label" parent="."]
+margin_left = 48.0
+margin_top = -224.0
+margin_right = 88.0
+margin_bottom = -210.0
+text = "Final Level! Gotta Win This!"
+
+[connection signal="body_entered" from="death platform" to="." method="_on_death_platform_body_entered"]

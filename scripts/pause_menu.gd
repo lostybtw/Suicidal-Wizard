@@ -10,13 +10,12 @@ func set_is_paused(value):
 	is_paused = value
 	get_tree().paused = is_paused
 	visible = is_paused
-
+	
 
 func _on_resume_pressed():
-	#is_paused = false
-	pass
+	self.is_paused = false
 
 
 func _on_return_pressed():
-	#is_paused = false
+	self.is_paused = false
 	get_tree().change_scene("res://scenes/main_menu.tscn")

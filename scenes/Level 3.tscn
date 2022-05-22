@@ -1,0 +1,52 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://prefabs/player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://prefabs/death platform.tscn" type="PackedScene" id=2]
+[ext_resource path="res://tilesets/46x48.tres" type="TileSet" id=3]
+[ext_resource path="res://prefabs/flag.tscn" type="PackedScene" id=4]
+[ext_resource path="res://tilesets/16x46.tres" type="TileSet" id=5]
+[ext_resource path="res://tilesets/tileset.tres" type="TileSet" id=6]
+[ext_resource path="res://scripts/node.gd" type="Script" id=7]
+[ext_resource path="res://scripts/flag3.gd" type="Script" id=8]
+[ext_resource path="res://prefabs/background.tscn" type="PackedScene" id=9]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource( 7 )
+
+[node name="Node2D" parent="." instance=ExtResource( 9 )]
+
+[node name="death platform" parent="." instance=ExtResource( 2 )]
+position = Vector2( 616, 200 )
+scale = Vector2( 3, 1 )
+collision_layer = 6
+collision_mask = 6
+
+[node name="player" parent="." instance=ExtResource( 1 )]
+
+[node name="46x48" type="TileMap" parent="."]
+tile_set = ExtResource( 3 )
+cell_size = Vector2( 46, 48 )
+collision_layer = 6
+collision_mask = 6
+format = 1
+tile_data = PoolIntArray( -327618, 536870934, 0, -65509, 536870933, 0, 25, 536870933, 0, 131069, 536870912, 0, 131070, 536870912, 0, 131071, 536870912, 0, 65536, 536870912, 0, 65537, 536870912, 0, 65538, 536870912, 0, 65539, 536870912, 0, 65542, 536870912, 0, 65548, 536870912, 0, 65559, 536870933, 0, 131090, 536870934, 0, 131093, 536870933, 0, 393245, 536870933, 0, 524319, 536870933, 0, 524326, 536870933, 0, 524327, 536870933, 0, 524328, 536870933, 0, 524329, 536870933, 0, 524330, 536870933, 0, 655393, 536870933, 0 )
+
+[node name="invis" type="TileMap" parent="."]
+visible = false
+tile_set = ExtResource( 6 )
+collision_layer = 0
+collision_mask = 0
+format = 1
+tile_data = PoolIntArray( -262102, 536870913, 0, -262101, 536870913, 0, -196567, 536870913, 0, -131032, 536870913, 0, -65497, 536870913, 0, 38, 536870913, 0, 65542, 536870913, 0, 65543, 536870913, 0, 65573, 536870913, 0, 131082, 536870913, 0, 131083, 536870913, 0, 131108, 536870913, 0, 196643, 536870913, 0, 262178, 536870913, 0, 327713, 536870913, 0, 393242, 536870913, 0, 393248, 536870913, 0, 458777, 536870913, 0 )
+
+[node name="16x46" type="TileMap" parent="."]
+tile_set = ExtResource( 5 )
+collision_layer = 6
+collision_mask = 6
+format = 1
+
+[node name="flag" parent="." instance=ExtResource( 4 )]
+position = Vector2( 2895, -240 )
+script = ExtResource( 8 )
+
+[connection signal="body_entered" from="death platform" to="." method="_on_death_platform_body_entered"]

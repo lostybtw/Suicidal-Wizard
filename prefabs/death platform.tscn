@@ -4,6 +4,9 @@
 extents = Vector2( 720.5, 117 )
 
 [node name="death platform" type="Area2D"]
+__meta__ = {
+"_edit_group_": true
+}
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 277, 516 )
